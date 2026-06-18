@@ -76,21 +76,8 @@ export async function deleteTrip(id) {
 export async function clearTrips() {
   try { await fetch(`${API}/trips`, { method: 'DELETE' }); return true } catch { return false }
 }
-
 export async function startBackend() {
-  try {
-    const r = await fetch(`${API}/health`, { signal: AbortSignal.timeout(1000) })
-    if (r.ok) {
-      const cfg = await loadConfig()
-      if (cfg.tgToken && cfg.llmKey) await startBot(cfg)
-      return
-    }
-  } catch {}
-  if (isTauri()) {
-    try { window.__TAURI__.shell.Command.sidecar('wanderon-backend').spawn() } catch {}
-  }
   for (let i = 0; i < 20; i++) {
-    await new Promise(r => setTimeout(r, 500))
     try {
       const r = await fetch(`${API}/health`, { signal: AbortSignal.timeout(800) })
       if (r.ok) {
@@ -99,7 +86,8 @@ export async function startBackend() {
         return
       }
     } catch {}
+    await new Promise(r => setTimeout(r, 500))
   }
+  console.warn('Backend did not respond within 10s — run: python backend/main.py')
 }
-
 export { API }
