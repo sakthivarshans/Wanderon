@@ -1,0 +1,35 @@
+[package]
+name = "wanderon"
+version = "1.0.0"
+description = "WanderOn — AI-powered travel planner"
+authors = ["WanderOn"]
+license = "MIT"
+repository = ""
+edition = "2021"
+rust-version = "1.60"
+
+[build-dependencies]
+tauri-build = { version = "1.5", features = [] }
+
+[dependencies]
+tauri = { version = "1.5", features = [
+  "shell-execute",
+  "shell-open",
+  "shell-sidecar",
+  "http-all",
+  "path-all",
+  "fs-all",
+  "notification-all",
+  "window-all",
+  "global-shortcut-all",
+  "os-all",
+  "system-tray"
+]}
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+keyring = "2"
+tokio = { version = "1", features = ["full"] }
+
+[features]
+default = ["custom-protocol"]
+custom-protocol = ["tauri/custom-protocol"]
