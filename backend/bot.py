@@ -1,5 +1,6 @@
 import asyncio, logging, re, base64
 from telegram import Update, InlineKeyboardButton, InlineKeyboardMarkup
+from telegram.constants import ParseMode
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, ContextTypes, filters
 from planner import TravelPlanner
 from llm import LLMClient
@@ -185,7 +186,10 @@ class WanderOnBot:
             return
         header = f"WanderOn Trip Plan — {dest}\n{'='*40}\n\n"
         for chunk in _split(header + plan):
-            await u.message.reply_text(chunk)
+            try:
+                await u.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN)
+            except Exception:
+                await u.message.reply_text(chunk)
 
     async def h_photo(self, u: Update, ctx: ContextTypes.DEFAULT_TYPE):
         if not await self._rl(u):
@@ -274,7 +278,10 @@ class WanderOnBot:
             try:
                 ans = await self.planner.answer_followup(text, plan)
                 for chunk in _split(ans):
-                    await u.message.reply_text(chunk)
+                    try:
+                        await u.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN)
+                    except Exception:
+                        await u.message.reply_text(chunk)
             except Exception as e:
                 log.error(f"followup err: {e}")
                 await u.message.reply_text("Sorry, could not answer that. Please try again.")
@@ -346,10 +353,16 @@ class WanderOnBot:
                    InlineKeyboardButton("Save Plan",  callback_data="save_plan")]]
             chunks = _split(plan)
             for i, chunk in enumerate(chunks):
-                if i == len(chunks) - 1:
-                    await u.message.reply_text(chunk, reply_markup=InlineKeyboardMarkup(kb))
-                else:
-                    await u.message.reply_text(chunk)
+                try:
+                    if i == len(chunks) - 1:
+                        await u.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN, reply_markup=InlineKeyboardMarkup(kb))
+                    else:
+                        await u.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN)
+                except Exception:
+                    if i == len(chunks) - 1:
+                        await u.message.reply_text(chunk, reply_markup=InlineKeyboardMarkup(kb))
+                    else:
+                        await u.message.reply_text(chunk)
         except Exception as e:
             log.error(f"plan err [{hash_uid(uid)}]: {e}")
             await set_session(uid, STATES[IDLE], {})
@@ -368,7 +381,10 @@ class WanderOnBot:
             est = await self.planner.estimate_cost(dest, "", days, members)
             await set_session(uid, STATES[IDLE], {})
             for chunk in _split(est):
-                await u.message.reply_text(chunk)
+                try:
+                    await u.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN)
+                except Exception:
+                    await u.message.reply_text(chunk)
         except Exception as e:
             await u.message.reply_text(f"Error estimating costs: {str(e)[:100]}")
 
@@ -395,7 +411,10 @@ class WanderOnBot:
             section = _format_hotels(hotel_data, budget_num * (nights or 3), currency, dest)
             await set_session(uid, STATES[IDLE], {})
             for chunk in _split(section):
-                await u.message.reply_text(chunk)
+                try:
+                    await u.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN)
+                except Exception:
+                    await u.message.reply_text(chunk)
         except Exception as e:
             await u.message.reply_text(f"Error searching hotels: {str(e)[:100]}")
 
@@ -435,7 +454,10 @@ class WanderOnBot:
             try:
                 result = await self.planner.city_guide(dest, aspect)
                 for chunk in _split(result):
-                    await q.message.reply_text(chunk)
+                    try:
+                        await q.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN)
+                    except Exception:
+                        await q.message.reply_text(chunk)
             except Exception as e:
                 await q.message.reply_text(f"Error: {str(e)[:100]}")
 
@@ -458,7 +480,10 @@ class WanderOnBot:
             if plan:
                 header = f"WanderOn Trip Plan — {dest}\n{'='*40}\n\n"
                 for chunk in _split(header + plan):
-                    await q.message.reply_text(chunk)
+                    try:
+                        await q.message.reply_text(chunk, parse_mode=ParseMode.MARKDOWN)
+                    except Exception:
+                        await q.message.reply_text(chunk)
             else:
                 await q.message.reply_text("No plan to save. Use /plan first.")
 
