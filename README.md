@@ -1,4 +1,4 @@
-# ✈️ WanderOn — AI Travel Planner
+#  WanderOn — AI Travel Planner
 
 **WanderOn** is an open-source desktop application that runs a personal AI travel planning bot on your Telegram. Just tell it your destination, dates, group size, and budget — it generates a complete trip plan with itinerary, transport, stays, and budget breakdown.
 
@@ -6,7 +6,7 @@
 
 ---
 
-## 📦 What's included
+##  What's included
 
 ```
 wanderon/
@@ -39,7 +39,7 @@ wanderon/
 
 ---
 
-## 🚀 Quick Start (Two ways)
+##  Quick Start (Two ways)
 
 ### Way 1 — Browser mode (easiest, no Rust needed)
 
@@ -103,7 +103,7 @@ npm run tauri:build
 
 ---
 
-## ⚙️ First-time Configuration (in the app)
+##  First-time Configuration (in the app)
 
 Once the app opens:
 
@@ -130,7 +130,7 @@ Your bot is now live. Open Telegram and send `/plan` to start!
 
 ---
 
-## 💬 Telegram Bot Commands
+##  Telegram Bot Commands
 
 | Command    | What it does |
 |-----------|--------------|
@@ -160,7 +160,7 @@ Bot:  [Follow-up answer based on the plan]
 
 ---
 
-## 🔐 Privacy & Security
+##  Privacy & Security
 
 | What | How it's handled |
 |------|-----------------|
@@ -173,7 +173,7 @@ Bot:  [Follow-up answer based on the plan]
 
 ---
 
-## 🛠️ Supported LLM Providers
+##  Supported LLM Providers
 
 | Provider   | Free tier | Best model for travel |
 |-----------|-----------|----------------------|
@@ -186,7 +186,7 @@ Bot:  [Follow-up answer based on the plan]
 
 ---
 
-## 📁 Data & Storage
+##  Data & Storage
 
 All data lives at `~/.wanderon/`:
 ```
@@ -200,7 +200,7 @@ To wipe all data: delete `~/.wanderon/` and clear keys in Settings → "Clear Al
 
 ---
 
-## 🏗️ Building for Distribution
+##  Building for Distribution
 
 GitHub Actions (`.github/workflows/build.yml`) automatically builds installers for all platforms when you push a version tag:
 
@@ -216,7 +216,7 @@ Outputs:
 
 ---
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 **Backend won't start:**
 ```bash
@@ -248,13 +248,13 @@ sudo apt-get install libsecret-1-dev gnome-keyring
 
 ---
 
-## 📄 License
+##  License
 
 MIT — free to use, modify, and distribute.
 
 ---
 
-## 🙏 Built with
+##  Built with
 
 - [Tauri](https://tauri.app) — lightweight desktop framework
 - [python-telegram-bot](https://python-telegram-bot.org) — Telegram API
