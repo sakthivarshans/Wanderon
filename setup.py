@@ -14,19 +14,19 @@ def main():
 
     # 1. Check Python version
     if sys.version_info < (3, 10):
-        print("❌ Python 3.10+ is required.")
+        print("Python 3.10+ is required.")
         sys.exit(1)
     print(f"✓ Python {sys.version_info.major}.{sys.version_info.minor}")
 
     # 2. Install backend deps
-    print("\n📦 Installing Python backend dependencies...")
+    print("\nInstalling Python backend dependencies...")
     req = os.path.join(os.path.dirname(__file__), "backend", "requirements.txt")
     result = subprocess.run(
         [sys.executable, "-m", "pip", "install", "-r", req, "--quiet"],
         capture_output=False
     )
     if result.returncode != 0:
-        print("❌ pip install failed. Try: pip install -r backend/requirements.txt manually.")
+        print("pip install failed. Try: pip install -r backend/requirements.txt manually.")
         sys.exit(1)
     print("✓ Python dependencies installed")
 
@@ -35,7 +35,7 @@ def main():
     os.makedirs(data_dir, exist_ok=True)
     print(f"✓ Data directory: {data_dir}")
 
-    print("\n✅ Setup complete!")
+    print("\nSetup complete!")
     print("\nNext steps:")
     print("  1. Install Node.js (https://nodejs.org) if not already installed")
     print("  2. Install Rust (https://rustup.rs) if not already installed")
