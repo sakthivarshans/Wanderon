@@ -11,7 +11,6 @@ import webbrowser
 import threading
 
 BACKEND_DIR = os.path.join(os.path.dirname(__file__), "backend")
-
 def run_backend():
     print("[WanderOn] Starting Python backend on http://127.0.0.1:7291 ...")
     subprocess.run(
@@ -19,7 +18,6 @@ def run_backend():
         cwd=BACKEND_DIR,
         env={**os.environ, "WANDERON_PORT": "7291"}
     )
-
 def main():
     print("=" * 50)
     print("  WanderOn — Development Mode")
