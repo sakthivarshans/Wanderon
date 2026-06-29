@@ -10,6 +10,11 @@ const SVC = 'wanderon'
  */
 function isTauri() { return !!(window.__TAURI__ || window.__TAURI_IPC__) }
 
+/**
+ * Saves a key-value configuration pair securely in Tauri keychain or falls back to session storage.
+ * @param {string} key Configuration key identifier.
+ * @param {string} value Raw token or key value.
+ */
 async function kSave(key, value) {
   if (!isTauri()) { sessionStorage.setItem(`wo_${key}`, value || ''); return }
   await window.__TAURI__.tauri.invoke('save_key', { service: SVC, key, value })
