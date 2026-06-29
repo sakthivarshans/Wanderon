@@ -104,6 +104,17 @@ class LLMClient:
         return h
 
     async def chat(self, system: str, user: str, max_tokens: int = 3000) -> str:
+        """
+        Executes a standard text-based chat request.
+        
+        Args:
+            system (str): System prompt directives.
+            user (str): User message query.
+            max_tokens (int): Maximum output token length (default: 3000).
+            
+        Returns:
+            str: Generated text answer from the model.
+        """
         if self.provider == "claude":
             return await self._claude([{"type": "text", "text": user}], system, max_tokens)
         async with httpx.AsyncClient(timeout=90) as c:
