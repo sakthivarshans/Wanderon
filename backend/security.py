@@ -25,6 +25,17 @@ def contains_sensitive_data(text: str) -> bool:
     return any(p.search(text or "") for p in _SENSITIVE)
 
 def sanitize(text: str, max_len: int = 800) -> str:
+    """
+    Sanitizes raw input text by stripping out control characters, limiting the length,
+    and trimming surrounding whitespace to prevent injection and buffer issues.
+    
+    Args:
+        text (str): The raw string input to sanitize.
+        max_len (int): Maximum allowed length of the sanitized string (default: 800).
+        
+    Returns:
+        str: The sanitized and truncated string.
+    """
     return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", (text or ""))[:max_len].strip()
 
 def hash_uid(uid: str) -> str:
