@@ -65,6 +65,9 @@ export async function loadConfig() {
   return { provider, model, tgToken, llmKey, otmKey, owmKey, erKey, serpapiKey }
 }
 
+/**
+ * Clears all configuration elements from secure system keychain.
+ */
 export async function clearConfig() {
   await Promise.all(KEYS.map(k => kDel(k)))
 }
