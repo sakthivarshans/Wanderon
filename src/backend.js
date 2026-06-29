@@ -134,6 +134,10 @@ export async function deleteTrip(id) {
 export async function clearTrips() {
   try { await fetch(`${API}/trips`, { method: 'DELETE' }); return true } catch { return false }
 }
+/**
+ * Attempts to contact and verify the local python server health.
+ * Performs automatic bot initialization if credentials exist.
+ */
 export async function startBackend() {
   for (let i = 0; i < 20; i++) {
     try {
