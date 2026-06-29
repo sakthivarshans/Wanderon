@@ -41,6 +41,10 @@ async function kDel(key) {
 
 const KEYS = ['provider','model','tg_token','llm_key','otm_key','owm_key','er_key','serpapi_key']
 
+/**
+ * Securely persists the entire LLM and Telegram configuration object.
+ * @param {object} cfg Application config payload.
+ */
 export async function saveConfig(cfg) {
   await kSave('provider',    cfg.provider)
   await kSave('model',       cfg.model)
