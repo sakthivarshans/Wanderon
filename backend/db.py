@@ -5,6 +5,13 @@ Manages local SQLite database operations, including trip plans storage and sessi
 import os, json, aiosqlite
 
 def get_db_path() -> str:
+    """
+    Resolves the directory path for the local SQLite database.
+    Creates the directory if it does not exist under the user's home path (~/.wanderon).
+    
+    Returns:
+        str: Absolute path to the SQLite database file.
+    """
     d = os.path.join(os.path.expanduser("~"), ".wanderon")
     os.makedirs(d, exist_ok=True)
     return os.path.join(d, "wanderon.db")
