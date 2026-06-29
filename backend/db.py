@@ -84,6 +84,14 @@ async def get_session(user_id: str) -> dict:
     return {"state": "idle", "data": {}}
 
 async def set_session(user_id: str, state: str, data: dict):
+    """
+    Updates or inserts a user's Telegram conversational flow state and context data.
+    
+    Args:
+        user_id (str): Telegram user ID.
+        state (str): Conversational state identifier.
+        data (dict): State context payload.
+    """
     async with aiosqlite.connect(get_db_path()) as db:
         await db.execute(
             "INSERT INTO sessions (user_id,state,data,updated_at) VALUES (?,?,?,CURRENT_TIMESTAMP) ON CONFLICT(user_id) DO UPDATE SET state=excluded.state,data=excluded.data,updated_at=excluded.updated_at",
