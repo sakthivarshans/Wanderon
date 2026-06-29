@@ -78,6 +78,19 @@ async def _load_airports() -> list[dict]:
     return _airports
 
 def _haversine(la1, lo1, la2, lo2) -> float:
+    """
+    Calculates great-circle distance between two points on the Earth's surface
+    using the Haversine formula.
+    
+    Args:
+        la1 (float): Latitude of point 1.
+        lo1 (float): Longitude of point 1.
+        la2 (float): Latitude of point 2.
+        lo2 (float): Longitude of point 2.
+        
+    Returns:
+        float: Distance in kilometers.
+    """
     R = 6371
     dl = math.radians(la2 - la1); dlo = math.radians(lo2 - lo1)
     a = math.sin(dl/2)**2 + math.cos(math.radians(la1)) * math.cos(math.radians(la2)) * math.sin(dlo/2)**2
