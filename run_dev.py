@@ -12,6 +12,9 @@ import threading
 
 BACKEND_DIR = os.path.join(os.path.dirname(__file__), "backend")
 def run_backend():
+    """
+    Runs the Python FastAPI backend by starting uvicorn main.py.
+    """
     print("[WanderOn] Starting Python backend on http://127.0.0.1:7291 ...")
     subprocess.run(
         [sys.executable, "main.py"],
