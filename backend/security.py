@@ -1,3 +1,7 @@
+"""
+WanderOn Security Module.
+Provides functions for input sanitization, rate limiting, and PII/sensitive data filtering.
+"""
 import re, time, hashlib
 
 _SENSITIVE = [
