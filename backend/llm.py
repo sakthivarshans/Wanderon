@@ -127,6 +127,19 @@ class LLMClient:
             return r.json()["choices"][0]["message"]["content"]
 
     async def chat_vision(self, system: str, text: str, img_b64: str, mime: str, max_tokens: int = 1200) -> str:
+        """
+        Executes a multimodal vision request, sending text and a base64-encoded image.
+        
+        Args:
+            system (str): System prompt directives.
+            text (str): Question or description prompt.
+            img_b64 (str): Base64-encoded image content.
+            mime (str): Image media type (e.g. image/jpeg).
+            max_tokens (int): Maximum output token length (default: 1200).
+            
+        Returns:
+            str: Generated text answer describing or translating the image.
+        """
         if self.provider == "claude":
             content = [
                 {"type": "text", "text": text},
