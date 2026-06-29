@@ -66,7 +66,18 @@ def supports_vision(provider: str, model: str) -> bool:
     return model in PROVIDERS.get(provider, {}).get("vision", [])
 
 class LLMClient:
+    """
+    Client class managing communication and payloads for various LLM API providers.
+    """
     def __init__(self, provider: str, api_key: str, model: str):
+        """
+        Initializes an LLM client with specific provider, API key, and model choice.
+        
+        Args:
+            provider (str): LLM API provider identifier.
+            api_key (str): Authorization key for accessing the provider's API.
+            model (str): Target model name.
+        """
         self.provider = provider.lower()
         self.api_key = api_key
         self.model = model
