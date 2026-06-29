@@ -45,6 +45,7 @@ fn check_key_exists(service: String, key: String) -> bool {
 
 // ── App setup ───────────────────────────────────────────────────────────────
 
+/// Builds the default SystemTray menu configuration for application window control.
 fn build_tray() -> SystemTray {
     let open = CustomMenuItem::new("open", "Open WanderOn");
     let separator = SystemTrayMenuItem::Separator;
