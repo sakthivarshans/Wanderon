@@ -173,6 +173,18 @@ async def get_weather(lat: float, lon: float, key: str) -> str:
         return ""
 
 async def convert_currency(amount: float, src: str, dst: str, key: str) -> str:
+    """
+    Converts currency amounts using the ExchangeRate-API pair conversion endpoint.
+    
+    Args:
+        amount (float): Quantity to convert.
+        src (str): Source currency code (e.g., INR).
+        dst (str): Target currency code (e.g., USD).
+        key (str): ExchangeRate-API authorization key.
+        
+    Returns:
+        str: Formatted string representing the currency pair conversion.
+    """
     if not key or src.upper() == dst.upper():
         return f"{amount:,.0f} {src.upper()}"
     try:
