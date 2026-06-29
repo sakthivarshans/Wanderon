@@ -39,6 +39,16 @@ def sanitize(text: str, max_len: int = 800) -> str:
     return re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", (text or ""))[:max_len].strip()
 
 def hash_uid(uid: str) -> str:
+    """
+    Generates a secure, truncated SHA-256 hash of a user identifier for logging purposes.
+    This protects user privacy in logs while maintaining auditability.
+    
+    Args:
+        uid (str): The raw Telegram user ID.
+        
+    Returns:
+        str: A 12-character hexadecimal representation of the user ID hash.
+    """
     return hashlib.sha256(uid.encode()).hexdigest()[:12]
 
 def valid_tg_token(t: str) -> bool:
