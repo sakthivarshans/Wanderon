@@ -97,6 +97,16 @@ def _haversine(la1, lo1, la2, lo2) -> float:
     return R * 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
 
 async def nearest_airport(lat: float, lon: float) -> dict | None:
+    """
+    Finds the geographically closest airport to a set of coordinates.
+    
+    Args:
+        lat (float): Latitude.
+        lon (float): Longitude.
+        
+    Returns:
+        dict: Closest airport record annotated with 'dist_km' or None.
+    """
     apts = await _load_airports()
     if not apts:
         return None
