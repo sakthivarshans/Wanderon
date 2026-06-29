@@ -49,6 +49,12 @@ def is_international(src: str, dst: str) -> bool:
     return src.upper() != dst.upper()
 
 async def _load_airports() -> list[dict]:
+    """
+    Lazily fetches and parses the OpenFlights airports CSV database.
+    
+    Returns:
+        list[dict]: List of parsed airports with their coordinates and IATA codes.
+    """
     global _airports
     if _airports is not None:
         return _airports
