@@ -59,6 +59,8 @@ fn build_tray() -> SystemTray {
     SystemTray::new().with_menu(menu)
 }
 
+/// Application entry point initializing system tray, handling tray events,
+/// registering IPC commands, and running the Tauri loop.
 fn main() {
     let tray = build_tray();
 
