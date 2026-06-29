@@ -115,6 +115,18 @@ async def nearest_airport(lat: float, lon: float) -> dict | None:
     return best
 
 async def get_attractions(lat: float, lon: float, key: str, limit: int = 10) -> list[dict]:
+    """
+    Fetches interesting tourist points/attractions from the OpenTripMap API within a 15km radius.
+    
+    Args:
+        lat (float): Latitude.
+        lon (float): Longitude.
+        key (str): OpenTripMap API authorization key.
+        limit (int): Max results count (default: 10).
+        
+    Returns:
+        list[dict]: Curated tourist places and category markers.
+    """
     if not key:
         return []
     try:
