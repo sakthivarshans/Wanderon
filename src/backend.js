@@ -127,6 +127,10 @@ export async function deleteTrip(id) {
   try { await fetch(`${API}/trips/${id}`, { method: 'DELETE' }); return true } catch { return false }
 }
 
+/**
+ * Clears all trip history records from local SQLite tables.
+ * @returns {Promise<boolean>} Success state.
+ */
 export async function clearTrips() {
   try { await fetch(`${API}/trips`, { method: 'DELETE' }); return true } catch { return false }
 }
