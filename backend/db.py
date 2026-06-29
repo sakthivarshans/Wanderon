@@ -100,6 +100,12 @@ async def set_session(user_id: str, state: str, data: dict):
         await db.commit()
 
 async def clear_session(user_id: str):
+    """
+    Deletes the session entry for a user, resetting their conversation status.
+    
+    Args:
+        user_id (str): Telegram user ID.
+    """
     async with aiosqlite.connect(get_db_path()) as db:
         await db.execute("DELETE FROM sessions WHERE user_id=?", (user_id,))
         await db.commit()
