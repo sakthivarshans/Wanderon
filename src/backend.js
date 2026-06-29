@@ -118,6 +118,11 @@ export async function getTrips() {
   try { const r = await fetch(`${API}/trips`); return r.ok ? r.json() : [] } catch { return [] }
 }
 
+/**
+ * Removes a specific trip from local storage.
+ * @param {number} id Target trip record ID.
+ * @returns {Promise<boolean>} Success state.
+ */
 export async function deleteTrip(id) {
   try { await fetch(`${API}/trips/${id}`, { method: 'DELETE' }); return true } catch { return false }
 }
