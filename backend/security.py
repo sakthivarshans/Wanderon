@@ -66,6 +66,17 @@ def valid_tg_token(t: str) -> bool:
 _buckets: dict[str, list[float]] = {}
 
 def is_rate_limited(uid: str, max_req: int = 15, window: int = 60) -> bool:
+    """
+    Checks if a user is rate-limited based on a sliding window rate limiter.
+    
+    Args:
+        uid (str): The unique identifier of the user (or hashed user ID).
+        max_req (int): Maximum number of requests allowed in the window (default: 15).
+        window (int): The duration of the window in seconds (default: 60).
+        
+    Returns:
+        bool: True if the user exceeds the request threshold, False otherwise.
+    """
     now = time.time()
     b = _buckets.setdefault(uid, [])
     while b and b[0] < now - window:
