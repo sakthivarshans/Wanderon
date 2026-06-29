@@ -12,6 +12,7 @@ use tauri::{
 
 // ── Keychain helpers ────────────────────────────────────────────────────────
 
+/// Saves a secret API key to the host operating system keychain.
 #[tauri::command]
 fn save_key(service: String, key: String, value: String) -> Result<(), String> {
     let entry = Entry::new(&service, &key).map_err(|e| e.to_string())?;
