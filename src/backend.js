@@ -56,6 +56,10 @@ export async function saveConfig(cfg) {
   await kSave('serpapi_key', cfg.serpapiKey || '')
 }
 
+/**
+ * Loads the application configuration object from keychain storage.
+ * @returns {Promise<object>} Loaded configuration attributes.
+ */
 export async function loadConfig() {
   const [provider, model, tgToken, llmKey, otmKey, owmKey, erKey, serpapiKey] = await Promise.all(KEYS.map(k => kLoad(k)))
   return { provider, model, tgToken, llmKey, otmKey, owmKey, erKey, serpapiKey }
