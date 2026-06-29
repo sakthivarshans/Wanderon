@@ -22,6 +22,9 @@ def run_backend():
         env={**os.environ, "WANDERON_PORT": "7291"}
     )
 def main():
+    """
+    Main entry point for starting the development runner.
+    """
     print("=" * 50)
     print("  WanderOn — Development Mode")
     print("=" * 50)
