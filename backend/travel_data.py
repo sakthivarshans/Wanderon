@@ -36,6 +36,16 @@ async def geocode(place: str) -> dict | None:
     return None
 
 def is_international(src: str, dst: str) -> bool:
+    """
+    Compares two country codes to determine if international travel guidelines apply.
+    
+    Args:
+        src (str): Origin country code.
+        dst (str): Destination country code.
+        
+    Returns:
+        bool: True if countries differ, False otherwise.
+    """
     return src.upper() != dst.upper()
 
 async def _load_airports() -> list[dict]:
