@@ -1,3 +1,8 @@
+"""
+WanderOn LLM Connection Client.
+Integrates with OpenAI, Gemini, Groq, Anthropic, Ollama, and NVIDIA APIs
+using compatible chat and vision endpoints.
+"""
 import httpx, logging
 
 log = logging.getLogger("wanderon.llm")
