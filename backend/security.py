@@ -12,6 +12,16 @@ _SENSITIVE = [
 ]
 
 def contains_sensitive_data(text: str) -> bool:
+    """
+    Checks if the provided text contains potentially sensitive data such as
+    credit card numbers, CVVs, passwords, OTPs, or email addresses.
+    
+    Args:
+        text (str): The input text message to inspect.
+        
+    Returns:
+        bool: True if sensitive patterns match, False otherwise.
+    """
     return any(p.search(text or "") for p in _SENSITIVE)
 
 def sanitize(text: str, max_len: int = 800) -> str:
