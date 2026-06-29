@@ -1,3 +1,6 @@
+/**
+ * Frontend communication gateway and local persistence config keys.
+ */
 const API = 'http://127.0.0.1:7291'
 const SVC = 'wanderon'
 
