@@ -110,6 +110,10 @@ export async function stopBot() {
   try { const r = await fetch(`${API}/stop`, { method: 'POST' }); return r.json() } catch { return { success: false } }
 }
 
+/**
+ * Fetches the recent travel plans stored in the local database.
+ * @returns {Promise<Array>} List of planned trips.
+ */
 export async function getTrips() {
   try { const r = await fetch(`${API}/trips`); return r.ok ? r.json() : [] } catch { return [] }
 }
