@@ -53,6 +53,16 @@ PROVIDERS = {
 }
 
 def supports_vision(provider: str, model: str) -> bool:
+    """
+    Determines if a given provider and model configuration supports multimodal vision inputs.
+    
+    Args:
+        provider (str): LLM provider key name.
+        model (str): Model identifier.
+        
+    Returns:
+        bool: True if the model supports image vision payloads, False otherwise.
+    """
     return model in PROVIDERS.get(provider, {}).get("vision", [])
 
 class LLMClient:
