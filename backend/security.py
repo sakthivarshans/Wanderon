@@ -52,6 +52,15 @@ def hash_uid(uid: str) -> str:
     return hashlib.sha256(uid.encode()).hexdigest()[:12]
 
 def valid_tg_token(t: str) -> bool:
+    """
+    Validates the format of a Telegram Bot API token using regex.
+    
+    Args:
+        t (str): The raw token string to validate.
+        
+    Returns:
+        bool: True if the token matches the standard Telegram format, False otherwise.
+    """
     return bool(re.match(r"^\d{6,12}:[A-Za-z0-9_-]{30,50}$", t.strip()))
 
 _buckets: dict[str, list[float]] = {}
