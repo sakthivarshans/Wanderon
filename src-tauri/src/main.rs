@@ -26,6 +26,7 @@ fn load_key(service: String, key: String) -> Result<String, String> {
     entry.get_password().map_err(|e| e.to_string())
 }
 
+/// Deletes a saved API key from the host operating system keychain.
 #[tauri::command]
 fn delete_key(service: String, key: String) -> Result<(), String> {
     let entry = Entry::new(&service, &key).map_err(|e| e.to_string())?;
