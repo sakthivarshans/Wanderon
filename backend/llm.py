@@ -7,6 +7,7 @@ import httpx, logging
 
 log = logging.getLogger("wanderon.llm")
 
+# Mapping of supported LLM providers, their API endpoints, defaults, and model list types
 PROVIDERS = {
     "groq": {
         "url": "https://api.groq.com/openai/v1/chat/completions",
