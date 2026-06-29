@@ -33,6 +33,7 @@ fn delete_key(service: String, key: String) -> Result<(), String> {
     entry.delete_password().map_err(|e| e.to_string())
 }
 
+/// Verifies whether an API key entry is currently configured in the keychain.
 #[tauri::command]
 fn check_key_exists(service: String, key: String) -> bool {
     if let Ok(entry) = Entry::new(&service, &key) {
