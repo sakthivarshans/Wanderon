@@ -1,5 +1,6 @@
 // WanderOn — Tauri main.rs
 // Handles: OS keychain, system tray, IPC commands to frontend
+// Serves as the Rust host layer in the desktop shell environment.
 
 #![cfg_attr(all(not(debug_assertions), target_os = "windows"), windows_subsystem = "windows")]
 
