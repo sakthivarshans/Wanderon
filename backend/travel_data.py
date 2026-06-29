@@ -1,3 +1,8 @@
+"""
+WanderOn Travel Data API Integration Layer.
+Integrates Nominatim Geocoder, OpenFlights Database, OpenTripMap, OpenWeatherMap,
+and ExchangeRate-API for real-world factual context retrieval.
+"""
 import httpx, csv, io, math, logging
 
 log = logging.getLogger("wanderon.data")
