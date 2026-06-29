@@ -19,6 +19,7 @@ fn save_key(service: String, key: String, value: String) -> Result<(), String> {
     entry.set_password(&value).map_err(|e| e.to_string())
 }
 
+/// Retrieves a saved API key from the host operating system keychain.
 #[tauri::command]
 fn load_key(service: String, key: String) -> Result<String, String> {
     let entry = Entry::new(&service, &key).map_err(|e| e.to_string())?;
