@@ -44,6 +44,20 @@ async def init_db():
         await db.commit()
 
 async def save_trip(user_id, destination, source_city, dates, members, budget, currency, plan_summary, full_plan):
+    """
+    Saves a completed trip itinerary plan into the database.
+    
+    Args:
+        user_id (str): Hashed or unique Telegram user ID.
+        destination (str): Visited location or destination name.
+        source_city (str): Starting point of the trip.
+        dates (str): Formatted travel dates.
+        members (int): Number of travelers.
+        budget (str): Financial budget limit.
+        currency (str): Budget currency.
+        plan_summary (str): Brief preview snippet of the itinerary.
+        full_plan (str): Full text description of the generated itinerary.
+    """
     async with aiosqlite.connect(get_db_path()) as db:
         await db.execute(
             "INSERT INTO trips (user_id,destination,source_city,dates,members,budget,currency,plan_summary,full_plan) VALUES (?,?,?,?,?,?,?,?,?)",
