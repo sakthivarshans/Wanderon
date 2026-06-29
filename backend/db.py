@@ -17,6 +17,10 @@ def get_db_path() -> str:
     return os.path.join(d, "wanderon.db")
 
 async def init_db():
+    """
+    Initializes the local SQLite database schema.
+    Creates 'trips' and 'sessions' tables if they are not already present.
+    """
     async with aiosqlite.connect(get_db_path()) as db:
         await db.execute("""CREATE TABLE IF NOT EXISTS trips (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
