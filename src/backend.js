@@ -4,6 +4,10 @@
 const API = 'http://127.0.0.1:7291'
 const SVC = 'wanderon'
 
+/**
+ * Detects if the current environment is running inside the Tauri desktop wrapper.
+ * @returns {boolean} True if running under Tauri, False otherwise.
+ */
 function isTauri() { return !!(window.__TAURI__ || window.__TAURI_IPC__) }
 
 async function kSave(key, value) {
