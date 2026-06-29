@@ -30,6 +30,10 @@ async function kLoad(key) {
   try { return await window.__TAURI__.tauri.invoke('load_key', { service: SVC, key }) } catch { return '' }
 }
 
+/**
+ * Deletes a key-value configuration pair from the Tauri keychain or fallback storage.
+ * @param {string} key Configuration key identifier.
+ */
 async function kDel(key) {
   if (!isTauri()) { sessionStorage.removeItem(`wo_${key}`); return }
   try { await window.__TAURI__.tauri.invoke('delete_key', { service: SVC, key }) } catch {}
