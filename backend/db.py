@@ -1,3 +1,7 @@
+"""
+WanderOn Database Access Layer.
+Manages local SQLite database operations, including trip plans storage and session management.
+"""
 import os, json, aiosqlite
 
 def get_db_path() -> str:
