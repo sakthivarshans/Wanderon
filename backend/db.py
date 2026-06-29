@@ -66,6 +66,15 @@ async def save_trip(user_id, destination, source_city, dates, members, budget, c
         await db.commit()
 
 async def get_session(user_id: str) -> dict:
+    """
+    Retrieves the current active state and session data for a Telegram user.
+    
+    Args:
+        user_id (str): Telegram user ID.
+        
+    Returns:
+        dict: Containing 'state' (str) and 'data' (dict) of the user session.
+    """
     async with aiosqlite.connect(get_db_path()) as db:
         db.row_factory = aiosqlite.Row
         async with db.execute("SELECT state, data FROM sessions WHERE user_id=?", (user_id,)) as c:
