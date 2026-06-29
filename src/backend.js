@@ -20,6 +20,11 @@ async function kSave(key, value) {
   await window.__TAURI__.tauri.invoke('save_key', { service: SVC, key, value })
 }
 
+/**
+ * Loads a key-value configuration pair from the Tauri keychain or fallback storage.
+ * @param {string} key Configuration key identifier.
+ * @returns {Promise<string>} Saved config value.
+ */
 async function kLoad(key) {
   if (!isTauri()) { return sessionStorage.getItem(`wo_${key}`) || '' }
   try { return await window.__TAURI__.tauri.invoke('load_key', { service: SVC, key }) } catch { return '' }
