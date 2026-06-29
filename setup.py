@@ -8,6 +8,10 @@ import sys
 import os
 
 def main():
+    """
+    Validates environment prerequisites, downloads Python backend dependencies,
+    and initializes local directories.
+    """
     print("=" * 50)
     print("  WanderOn — Setup")
     print("=" * 50)
