@@ -144,6 +144,17 @@ async def get_attractions(lat: float, lon: float, key: str, limit: int = 10) -> 
         return []
 
 async def get_weather(lat: float, lon: float, key: str) -> str:
+    """
+    Retrieves weather forecast summary metrics from the OpenWeatherMap API.
+    
+    Args:
+        lat (float): Latitude.
+        lon (float): Longitude.
+        key (str): OpenWeatherMap API key.
+        
+    Returns:
+        str: Description string (e.g. '24°C, light rain') or empty string.
+    """
     if not key:
         return ""
     try:
