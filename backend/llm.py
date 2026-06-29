@@ -86,6 +86,12 @@ class LLMClient:
             raise ValueError(f"Unknown provider: {provider}")
 
     def _headers(self) -> dict:
+        """
+        Builds the request headers tailored to the selected provider's authentication standards.
+        
+        Returns:
+            dict: Header keys and values for HTTP client requests.
+        """
         h = {"Content-Type": "application/json"}
         if self.provider == "claude":
             h["x-api-key"] = self.api_key
