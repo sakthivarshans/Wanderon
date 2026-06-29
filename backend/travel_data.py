@@ -9,6 +9,15 @@ log = logging.getLogger("wanderon.data")
 _airports: list[dict] | None = None
 
 async def geocode(place: str) -> dict | None:
+    """
+    Performs forward geocoding using OpenStreetMap's Nominatim API.
+    
+    Args:
+        place (str): The text-based destination or city name.
+        
+    Returns:
+        dict: Coordinate mapping {lat, lon, country, display} or None.
+    """
     try:
         async with httpx.AsyncClient(timeout=10) as c:
             r = await c.get("https://nominatim.openstreetmap.org/search",
