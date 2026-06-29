@@ -160,6 +160,17 @@ class LLMClient:
             return r.json()["choices"][0]["message"]["content"]
 
     async def _claude(self, content, system: str, max_tokens: int) -> str:
+        """
+        Private helper specifically for Anthropic Messages API completion payload format.
+        
+        Args:
+            content (list): Anthropic structure message parts.
+            system (str): System prompt.
+            max_tokens (int): Output token count limit.
+            
+        Returns:
+            str: Answer parsed from Claude messages payload response.
+        """
         async with httpx.AsyncClient(timeout=90) as c:
             r = await c.post(self.cfg["url"], headers=self._headers(), json={
                 "model": self.model, "max_tokens": max_tokens,
