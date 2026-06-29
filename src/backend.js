@@ -102,6 +102,10 @@ export async function startBot(cfg) {
   return r.json()
 }
 
+/**
+ * Stops the Telegram bot execution process on the backend.
+ * @returns {Promise<object>} Stop operation response.
+ */
 export async function stopBot() {
   try { const r = await fetch(`${API}/stop`, { method: 'POST' }); return r.json() } catch { return { success: false } }
 }
