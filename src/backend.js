@@ -72,6 +72,10 @@ export async function clearConfig() {
   await Promise.all(KEYS.map(k => kDel(k)))
 }
 
+/**
+ * Queries the active backend connection status and details.
+ * @returns {Promise<object|null>} Status payload or null.
+ */
 export async function getStatus() {
   try {
     const r = await fetch(`${API}/status`, { signal: AbortSignal.timeout(3000) })
