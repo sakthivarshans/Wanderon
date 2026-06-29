@@ -83,6 +83,11 @@ export async function getStatus() {
   } catch { return null }
 }
 
+/**
+ * Sends a command to the backend to initialize and start the Telegram bot client.
+ * @param {object} cfg Loaded application config object.
+ * @returns {Promise<object>} Response payload containing success state.
+ */
 export async function startBot(cfg) {
   const r = await fetch(`${API}/configure`, {
     method: 'POST',
